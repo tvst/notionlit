@@ -6,15 +6,9 @@ import datetime
 import pandas as pd
 import calendar
 
-PAGE_URL = 'https://www.notion.so/streamlit/NotionLit-d500932b258b43298b509eb6dd3db230'
-the_token = st.secrets.notion.token
-
-TTL = 0 #12*60*60
-
-@st.cache(allow_output_mutation=True, ttl=TTL)
 def _get_blocks():
-    notion = Client(auth=the_token)
-    blocks = notion.blocks.children.list(get_id(PAGE_URL))
+    notion = Client(auth=st.secrets.notion.token)
+    blocks = notion.blocks.children.list(get_id(st.secrets.notion.page_url))
     return blocks
 
 def get_pure_text_from_text_dict(text):
@@ -40,7 +34,7 @@ def get_markdown_from_text_dict(text):
 
 blocks = _get_blocks()
 
-#blocks
+#blocks  # Uncomment for debugging
 
 for block in blocks['results']:
     if block['type'] == 'heading_1':
@@ -69,3 +63,4 @@ for block in blocks['results']:
             exec(txt)
         else:
             st.code(txt, language=block['code']['language'])
+
