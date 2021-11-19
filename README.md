@@ -1,6 +1,6 @@
 # Streamlit + Notion test app
 
-Write a Streamlit app using Notion.
+Write Streamlit apps using Notion!
 
 **☠️  IMPORTANT:** This is just a little prototype I made to play with some ideas. Not meant for production!
 
