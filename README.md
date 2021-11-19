@@ -2,10 +2,14 @@
 
 Write Streamlit apps using Notion!
 
-**☠️  IMPORTANT:** This is just a little prototype I made to play with some ideas. Not meant for production!
+☠️ **IMPORTANT:** This is just a little prototype I made to play with some ideas. Not meant for production!
 
+* Example app: https://share.streamlit.io/tvst/notionlit/main
+* Notion page with source code: https://www.notion.so/streamlit/NotionLit-d500932b258b43298b509eb6dd3db230
 
-# Instructions
+  👉 **Try editing the Notion page, then going to the app and pressing `R` to refresh!**
+
+# Forking instructions
 
 1. Fork this app into your own repo
    (or just copy `streamlit_app.py`. It's fully self-contained!)
