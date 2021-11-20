@@ -53,6 +53,10 @@ st.line_chart(data)
 
 (If you need other Python packages, add them to your `requirements.txt`)
 
+One more thing: let's say you want to execute Python code, but don't want to
+polute your Notion page with too much ugly code. There's a hack for that.
+Just put the code inside an expander **without a title.**
+
 
 # What's supported
 
@@ -60,11 +64,12 @@ st.line_chart(data)
 * Paragraphs (with bold/italic/strikethrough/links)
 * Images
 * Code blocks
+* Expanders
 
 And that's all ☹️
 
 Again, this is just a proof-of-concept / prototype. So I didn't implement a bunch of other stuff,
-like underline, @mentions, expander, columns, etc.
+like underline, @mentions, columns, etc.
 
 Also note that not everything in Streamlit is supported either. I
 don't have an exhaustive list but, for example,
