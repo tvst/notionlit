@@ -91,6 +91,7 @@ st.write(
             position='fixed',
             top=rem(1),
             left=rem(1),
+            z_index=1000000,
         )
     )(
         a(
