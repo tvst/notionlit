@@ -73,7 +73,7 @@ Just put the code inside an expander **without a title.**
 And that's all ☹️
 
 Again, this is just a proof-of-concept / prototype. So I didn't implement a bunch of other stuff,
-like underline, @mentions, columns, etc.
+like underline, @page_mentions, columns, etc.
 
 Also note that not everything in Streamlit is supported either. I
 don't have an exhaustive list but, for example,
