@@ -21,6 +21,8 @@ def get_pure_text_from_text_dict(text):
 def get_markdown_from_text_dict(text):
     out = []
     for token in text:
+        markdown = None
+
         if token['type'] == 'text':
             markdown = token['text']['content']
             annots = token['annotations']
@@ -32,6 +34,21 @@ def get_markdown_from_text_dict(text):
                 markdown = f'_{markdown}_'
             if annots['strikethrough']:
                 markdown = f'~~{markdown}~~'
+
+        elif token['type'] == 'mention':
+            mention = token['mention']
+
+            if mention['type'] == 'date':
+                date = mention['date']
+                if 'end' in date and date['end'] is not None:
+                    markdown = f"{date['start']}–{date['end']}"
+                else:
+                    markdown = date['start']
+            elif mention['type'] == 'user':
+                user = mention['user']
+                markdown = f"@{user['name']}"
+
+        if markdown:
             out.append(markdown)
 
     return ''.join(out)
@@ -42,23 +59,23 @@ def draw_blocks(blocks):
             md = get_markdown_from_text_dict(block['heading_1']['text'])
             st.write(f'# {md}')
 
-        if block['type'] == 'heading_2':
+        elif block['type'] == 'heading_2':
             md = get_markdown_from_text_dict(block['heading_2']['text'])
             st.write(f'## {md}')
 
-        if block['type'] == 'heading_3':
+        elif block['type'] == 'heading_3':
             md = get_markdown_from_text_dict(block['heading_3']['text'])
             st.write(f'### {md}')
 
-        if block['type'] == 'paragraph':
+        elif block['type'] == 'paragraph':
             md = get_markdown_from_text_dict(block['paragraph']['text'])
             st.write(md)
 
-        if block['type'] == 'image':
+        elif block['type'] == 'image':
             md = get_markdown_from_text_dict(block['image']['caption'])
             st.image(block['image']['file']['url'], md)
 
-        if block['type'] == 'code':
+        elif block['type'] == 'code':
             txt = get_pure_text_from_text_dict(block['code']['text'])
 
             # Treat Python codeblocks differently
@@ -67,7 +84,7 @@ def draw_blocks(blocks):
             else:
                 st.code(txt, language=block['code']['language'])
 
-        if block['type'] == 'toggle':
+        elif block['type'] == 'toggle':
             md = get_markdown_from_text_dict(block['toggle']['text'])
             content_blocks = notion.blocks.children.list(block['id'])
 
@@ -81,8 +98,16 @@ def draw_blocks(blocks):
                 with st.expander(md):
                     draw_blocks(content_blocks)
 
-        if block['type'] == 'divider':
+        elif block['type'] == 'divider':
             st.write("---")
+
+        elif block['type'] == 'bulleted_list_item':
+            md = get_markdown_from_text_dict(block['bulleted_list_item']['text'])
+            st.write(f"* {md}")
+
+        elif block['type'] == 'numbered_list_item':
+            md = get_markdown_from_text_dict(block['numbered_list_item']['text'])
+            st.write(f"1. {md}")
 
 
 st.write(
@@ -112,4 +137,3 @@ draw_blocks(blocks)
 
 # with st.expander("Notionlit debug info"):
 #     blocks
-
