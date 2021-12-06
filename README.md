@@ -58,8 +58,8 @@ st.line_chart(data)
 (If you need other Python packages, add them to your `requirements.txt`)
 
 One more thing: let's say you want to execute Python code, but don't want to
-pollute your Notion page with too much ugly code. There's a hack for that.
-Just put the code inside an expander **without a title or with a title equal to "Code".**
+polute your Notion page with too much ugly code. There's a hack for that.
+Just put the code inside an expander **without a title.**
 
 
 # What's supported
@@ -69,8 +69,6 @@ Just put the code inside an expander **without a title or with a title equal to 
 * Images
 * Code blocks
 * Expanders
-* @user_mentions
-* @date_mentions
 
 And that's all ☹️
 
