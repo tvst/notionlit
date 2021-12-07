@@ -1,3 +1,5 @@
 streamlit
 notion-client
 htbuilder
+black
+pre-commit
