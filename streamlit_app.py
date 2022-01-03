@@ -85,11 +85,13 @@ def draw_blocks(blocks):
                 st.code(txt, language=block["code"]["language"])
 
         elif block["type"] == "toggle":
-            md = get_markdown_from_text_dict(block["toggle"]["text"]).strip().lower()
+            md = get_markdown_from_text_dict(block["toggle"]["text"]).strip()
             content_blocks = notion.blocks.children.list(block["id"])
 
             if (
-                (len(md) == 0 or md == "code")  # Title is empty or equal to "Code"
+                (  # Title is empty or equal to "Code"
+                    len(md) == 0 or md.lower() == "code"
+                )
                 and content_blocks
                 and len(content_blocks["results"])
                 == 1  # Only execute if there's a single code block
