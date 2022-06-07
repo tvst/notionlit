@@ -130,7 +130,7 @@ def draw_blocks(blocks):
 
 st.write(
     str(
-        div(style=styles(position="fixed", top=rem(1), left=rem(1), z_index=1000000,))(
+        div(style=styles(position="fixed", top=rem(1), left=rem(1), z_index=2147483647,))(
             a(
                 href=st.secrets.notion.page_url,
                 target="_blank",
