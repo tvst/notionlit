@@ -1,5 +1,5 @@
 streamlit
-notion-client
+notion-client==1.0.*
 htbuilder
 black
 pre-commit
